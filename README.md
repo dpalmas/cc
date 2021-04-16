@@ -1,2 +1,2 @@
 # cc
-Repositório para atividades da disciplina de Sistemas Distribuídos.
+Repositório para atividades da disciplina de Construção de Compiladores.
