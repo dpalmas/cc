@@ -1,0 +1,10 @@
+Programa testaIF
+{
+    num n1; 
+    num n2;
+    n2 = n3 + n4; 
+    se (x == 0) 
+    {
+        x = n4 + n3;
+    }
+}

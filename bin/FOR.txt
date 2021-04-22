@@ -1,0 +1,48 @@
+Programa testaFOR
+{
+	str s1 = "ola";
+	chr c1 = '3', c2;		
+	num n1 = 0, n2 = 2, n3 = 2, x;		
+	dec d1;
+			
+	para(n2 = 0; n2 < 10; n2++)
+	{
+		escreva(n2);
+	}
+	
+	se( n1 >= 0 )
+	{
+		n1 = n3 / n2;
+	} 
+	senaose(n1 < 10)
+	{ 
+		n1 = n2 - n3; 
+	}
+	senao
+	{
+		escreva("Nenhuma opção");
+	}
+	
+	faca
+	{
+		x = x + 1;
+		escreva(x);
+	}
+	enquanto(x < 5)
+	
+	enquanto(n1 <= 20)
+	{
+		n1++;
+		escreva(n1);
+	}
+	
+	alternativa(n3)
+	{
+		caso 3:
+			n1 = 2 + 2;
+		termina;
+		predef:
+			n1 = 10;
+		termina;	
+	}		
+}
