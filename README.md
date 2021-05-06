@@ -1,5 +1,5 @@
 <h3 align="center">
-  Construção de Compiladores :computer: :man_technologist:
+  Construção de Compiladores :man_technologist:
 </h3>
 
 <p align="center">Repositório para atividades da disciplina de Construção de Compiladores.</a>
@@ -23,8 +23,10 @@ O trabalho aborda etapas da construção de um compilador. Será composto por tr
 :heavy_check_mark: Parte escrita: consiste em um trabalho escrito, na formatação de artigos da SBC (Sociedade Brasileira de Computação), devendo conter, no mínimo, os seguintes tópicos:
 
 :heavy_check_mark: A definição de compiladores;
+
 :heavy_check_mark: Descrições sobre as etapas de análise léxica, análise sintática e análise
 semântica;
+
 :heavy_check_mark: A documentação da aplicação prática desenvolvida, que inclui a gramática na forma Backus-Naur, um exemplo de um programa válido na linguagem fonte e um exemplo inválido, constando a definição dos erros.
 
 :heavy_check_mark: Implementação: consiste em desenvolver um compilador contendo no mínimo as etapas de análise léxica e sintática e um controle básico de erros, 
@@ -41,11 +43,11 @@ em lista de variáveis e, com e sem atribuição durante a declaração, e se a 
 
 O trabalho consiste em duas tarefas principais:
 
-- [] Desenvolvimento do compilador com todas as funcionalidades do primeiro bimestre implementadas (análise léxica e sintática) acrescido de leitura de
+* [ ] Desenvolvimento do compilador com todas as funcionalidades do primeiro bimestre implementadas (análise léxica e sintática) acrescido de leitura de
 arquivos, interface de interação e mensagens de erro, método de sincronização do pânico relativo à sua linguagem, de modo análogo ao código feito em sala de aula. A interface de iteração deve ser capaz de exibir o código sendo elaborado, contagem de linhas de códigos, tokens reconhecidos, texto de
 aceitação ou não da linguagem e mensagens de erros;
 
-- [] Apresentação do compilador desenvolvido, demonstrando os passos para poder transformar sua linguagem em uma linguagem LL(1), bem como a codificação envolvida no processo de sincronização do pânico e interface gráfica.
+* [ ] Apresentação do compilador desenvolvido, demonstrando os passos para poder transformar sua linguagem em uma linguagem LL(1), bem como a codificação envolvida no processo de sincronização do pânico e interface gráfica.
 Questões como realce visual de linhas contendo erros (não somente a mensagem dizendo a linha e coluna onde está o erro) contam pontos extras.
 Realizar preparações para geração de código executável (por exemplo, converter para código C e chamar o gcc para converter em executável) contam
 pontos extras. 
