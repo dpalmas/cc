@@ -20,14 +20,14 @@
 
 O trabalho aborda etapas da construção de um compilador. Será composto por três pontos principais:
 
-:heavy_check_mark: Parte escrita: consiste em um trabalho escrito, na formatação de artigos da SBC (Sociedade Brasileira de Computação), devendo conter, no mínimo, os seguintes tópicos:
+:heavy_check_mark: Parte escrita: consiste em um trabalho escrito, na formatação de artigos da [SBC](https://www.sbc.org.br/) (Sociedade Brasileira de Computação), devendo conter, no mínimo, os seguintes tópicos:
 
 :heavy_check_mark: A definição de compiladores;
 
 :heavy_check_mark: Descrições sobre as etapas de análise léxica, análise sintática e análise
 semântica;
 
-:heavy_check_mark: A documentação da aplicação prática desenvolvida, que inclui a gramática na forma Backus-Naur, um exemplo de um programa válido na linguagem fonte e um exemplo inválido, constando a definição dos erros.
+:heavy_check_mark: A documentação da aplicação prática desenvolvida, que inclui a gramática na forma [Backus-Naur](https://www.sciencedirect.com/topics/computer-science/backus-naur-form), um exemplo de um programa válido na linguagem fonte e um exemplo inválido, constando a definição dos erros.
 
 :heavy_check_mark: Implementação: consiste em desenvolver um compilador contendo no mínimo as etapas de análise léxica e sintática e um controle básico de erros, 
 mencionando pelo menos o token originário do erro e o token esperado. O controle de erros deve apresentar mensagens em língua pátria. Essa
