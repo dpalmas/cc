@@ -20,7 +20,7 @@
 
 O trabalho aborda etapas da construção de um compilador. Será composto por três pontos principais:
 
-1. Parte escrita: consiste em um trabalho escrito, na formatação de artigos da SBC (Sociedade Brasileira de Computação), devendo conter, no mínimo, os seguintes tópicos:
+1. [x] Parte escrita: consiste em um trabalho escrito, na formatação de artigos da SBC (Sociedade Brasileira de Computação), devendo conter, no mínimo, os seguintes tópicos:
 
 - [x] A definição de compiladores;
 - [x] Descrições sobre as etapas de análise léxica, análise sintática e análise
