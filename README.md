@@ -47,7 +47,7 @@ O trabalho consiste em duas tarefas principais:
 arquivos, interface de interação e mensagens de erro, método de sincronização do pânico relativo à sua linguagem, de modo análogo ao código feito em sala de aula. A interface de iteração deve ser capaz de exibir o código sendo elaborado, contagem de linhas de códigos, tokens reconhecidos, texto de
 aceitação ou não da linguagem e mensagens de erros;
 
-* [ ] Apresentação do compilador desenvolvido, demonstrando os passos para poder transformar sua linguagem em uma linguagem LL(1), bem como a codificação envolvida no processo de sincronização do pânico e interface gráfica.
+* [ ] Apresentação do compilador desenvolvido, demonstrando os passos para poder transformar sua linguagem em uma linguagem [LL(1)](https://cs.stackexchange.com/questions/6768/how-is-this-grammar-ll1), bem como a codificação envolvida no processo de sincronização do pânico e interface gráfica.
 Questões como realce visual de linhas contendo erros (não somente a mensagem dizendo a linha e coluna onde está o erro) contam pontos extras.
 Realizar preparações para geração de código executável (por exemplo, converter para código C e chamar o gcc para converter em executável) contam
 pontos extras. 
