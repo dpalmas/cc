@@ -1,6 +1,6 @@
-<h3 align="center">
+<h1 align="center">
   Construção de Compiladores :man_technologist:
-</h3>
+</h1>
 
 <p align="center">Repositório para atividades da disciplina de Construção de Compiladores.</a>
 </p>
