@@ -1,0 +1,6 @@
+Programa {
+	// var inteiro a
+	se (a ! b) {
+		a := (a+1);
+	}
+}

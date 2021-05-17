@@ -1,0 +1,57 @@
+Programa {
+	var inteiro a;
+	var inteiro b ,c;
+	var inteiro op ;
+	var decimal g:=1,b:=1,c:=3; 
+	var decimal a_b_a ;
+	var decimal a_b;
+	var decimal a_b:=fun_a(a);
+	var decimal a (( 1+1 )) ;
+	var decimal b := func(a,b);
+	var booleano teste;
+	var booleano teste1:=verdadeiro;
+	var booleano teste2:=falso;
+
+	test := verdadeiro ;
+	teste := falso;
+
+	a := (1+1) ;
+	b := 2.23E-23 ;
+	c := (1 - 1);
+	d := (3 * 2);
+	e := (3/4);
+
+	se ((1 < 3)) {
+		a := ola() ;
+	} ;
+
+	se ((a ! b)) {
+		a := (a+1) ;
+	}senao{
+		se ((1 < 3)) {
+			a := (a+2) ;
+		};
+		a := (a+1);
+	};
+
+	se ((1 <= 3)) {
+		a := ola() ;
+	} ;
+
+	se ((1 >= 3)) {
+		a := ola() ;
+	} ;
+
+	enquanto ((b == verdadeiro)) { 
+		a := 1;
+		imprime (a) ;
+	} ;
+	faca {
+		imprime(b);
+	} enquanto((a == c));
+}
+
+funcao inteiro compiladores (inteiro a , booleano b , decimal c) {
+	var inteiro testa_funcao ;
+	retorna testa_funcao ;
+} 

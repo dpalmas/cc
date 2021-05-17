@@ -1,0 +1,295 @@
+/**
+ * LINGUAGEM D++
+ */
+
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(CompiladorDPP)
+import java.io.*;
+
+public class CompiladorDPP {
+
+  public static void main(String args []) throws ParseException, IOException
+  {
+    try
+    {
+      CompiladorDPP cdpp = new CompiladorDPP(new FileInputStream(args [0]));
+      SimpleNode sn = cdpp.CompiladorDPP();
+      sn.dump("");
+    }
+    catch (Exception e)
+    {
+      System.out.println("Analise Sintaxica incorreta");
+      System.out.println("Erro de Token.");
+      System.out.println(e.getMessage());
+      e.printStackTrace();
+    }
+    catch (Error e)
+    {
+      System.out.println(e.getMessage());
+    }
+  }
+}
+
+PARSER_END(CompiladorDPP)
+
+TOKEN_MGR_DECLS:
+{
+  static int countLexError = 0;
+  int countParserError = 0;
+
+  public int foundLexError()
+  {
+    return countLexError;
+  }
+
+  public int foundParserError()
+  {
+    return countParserError;
+  }
+}
+
+
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+| <COMENTARIO: "//" (<COM>)* >
+| <COMENTARIOS: "/*" ("\n" | "\r" | <COM>)* "*/" >
+| <#COM: ( ~["\"","\\","\n","\r","\""] | "\\" ( ["n","t","b","r","f","\\","\'","\""] | ( ["\n","\r"] | "\r\n") ) | "\"" )*>
+}
+
+TOKEN: /* PALAVRAS RESERVADAS */
+{
+	  <PROG: "Programa" > {System.out.println("PROGRAMA -> "+image);}
+	| <IF: "se" >{System.out.println("IF -> "+image);}
+	| <ELSE:"senao" >{System.out.println("ELSE -> "+image);}
+	| <ELSEIF:"senaose" >{System.out.println("ELSE IF -> "+image);}
+	| <FOR:"para" >{System.out.println("FOR -> "+image);}
+	| <SWITCH:"alternativa" >{System.out.println("SWITCH -> "+image);}
+	| <CASE:"caso" >{System.out.println("CASE -> "+image);}
+	| <BREAK:"termina" >{System.out.println("BREAK -> "+image);}
+	| <DEFAUL:"predef" >{System.out.println("DEFAULT -> "+image);}
+	| <DO:"faca" >{System.out.println("DO -> "+image);}
+	| <WHILE:"enquanto" >{System.out.println("WHILE -> "+image);}
+	| <WRITE:"escreva" >{System.out.println("WRITE -> "+image);}
+	| <READ:"leia" >{System.out.println("READ -> "+image);}
+	| <VAR:"var" >{System.out.println("VARIAVEL -> "+image);}
+	| <TRUE:"verdadeiro" >{System.out.println("VERDADEIRO -> "+image);}
+	| <FALSE:"falso" >{System.out.println("FALSO -> "+image);}
+	| <INT:"inteiro" >{System.out.println("INTEIRO -> "+image);}
+	| <BOOL:"booleano" >{System.out.println("BOOLEANO -> "+image);}
+	| <FLOAT:"decimal" >{System.out.println("DECIMAL -> "+image);}
+	| <RETURN:"retorna" >{System.out.println("RETORNA -> "+image);}
+	| <PRINT:"imprime" >{System.out.println("IMPRIME -> "+image);}
+	| <FUNCAO:"funcao" >{System.out.println("FUNCAO -> "+image);}
+	| <ATRIB:":="> {System.out.println("ATRIBUIÇÃO -> "+image+"\r\n");}
+}
+
+TOKEN:
+{
+      <APAREN: "(" >{System.out.println("ABRE PARENTESE -> "+image);}
+	| <FPAREN: ")" >{System.out.println("FECHA PARENTESE -> "+image);}
+	| <ACHAVE: "{" >{System.out.println("ABRE CHAVE -> "+image);}
+	| <FCHAVE: "}" >{System.out.println("FECHA CHAVE -> "+image);}
+	| <PEV: ";" >{System.out.println("PONTO E VÍRGULA -> "+image);}
+	| <VIR: "," >{System.out.println("VÍRGULA -> "+image);}
+}
+
+TOKEN :
+{
+ <			 OP: ("+" | "-" | "*" | "/" )					>
+|<		    OPL: ( "<" | ">" | "=="| "<="| ">=" |"!")		>
+|<		 #LETRA: ["a"-"z","A"-"Z"]							> 
+|<	    #DIGITO: ["0"-"9"]									>
+|<	   #DIGITOS: <DIGITO> (<DIGITO>)*						>
+|<		    #LD: <LETRA> | <DIGITO>							>
+|<		  #FSUB: ("_"(<LD>)+)								>
+|<		   #FOP: ("."<DIGITOS>)?							>
+|<		 #EXPOP: ("E"("+" | "-")?<DIGITOS>)?				>
+|<IDENTIFICADOR: <LETRA>(<LD>)*(<FSUB>)*					>
+|< TOKEN_NUMLIT: <DIGITOS><FOP><EXPOP>						>
+}
+
+SPECIAL_TOKEN :
+{
+  < ID_INVALIDO :
+    (
+      "@"
+    | "!"
+    | "#"
+    | "*"
+    | "-"
+    | "+" "="
+    | "&"
+    | < DIGITO >
+    )
+    (
+      < LETRA >
+    | < DIGITO >
+    | "_"
+    | "@"
+    )* >
+  {
+    System.out.println("Identificador Invalido: " + image);
+    countLexError++;
+    System.out.println(
+    "\n\nErro lexico -------->  Linha " + 
+    input_stream.getEndLine() + 
+    " Coluna " + 
+    input_stream.getEndColumn() + 
+    " " + 
+    image + 
+    "\n"
+    );
+  }
+| 
+  < INVALIDO_LEXICO : 
+    (~[ "a"-"z", 
+    "A"-"Z", 
+    "0"-"9", "\"", "(", ")", "{", "}", ";", ",", ".", "=", ":", ">", "<", "!", "+", "-", "*", "/", " ", "_", ";", "\t", "\n", "\r", "\f" 
+    ])+ >
+  {
+    System.out.println("Linha " + input_stream.getEndLine() + " Coluna " + input_stream.getEndColumn() + " Caractere invalido encontrado: " + image + "TOTAL ERRO " + countLexError);
+    countLexError++;
+    System.out.println("\n\nErro lexico -------->  Linha " + input_stream.getEndLine() + " Coluna " + input_stream.getEndColumn() + " " + image + "\n");
+  }
+}
+
+SimpleNode CompiladorDPP () :
+{}
+{
+  Programa()
+  (
+    Func()
+  )*
+  < EOF >
+  {
+    return jjtThis;
+  }
+}
+	
+void Programa ():
+{}
+{
+ <PROG> <ACHAVE> 
+ 
+ VarDecl()
+ SeqComandos()
+
+ <FCHAVE>
+
+}
+
+void VarDecl ():
+{}
+{
+	(<VAR> Tipo() <IDENTIFICADOR> Atribuicao())* 
+}
+
+void Tipo ():
+{}
+{
+	<INT> | <BOOL> | <FLOAT>
+}
+
+void Atribuicao():
+{}
+{
+	 Atribuir()
+	 | <PEV>  
+}
+
+void Atribuir ():
+{}
+{
+	<ATRIB> Exp() Loop()  | <APAREN> ( ListaExp() )? <FPAREN> <PEV> | Mdeclaracao() 
+}
+
+void Mdeclaracao():
+{}
+{
+ <VIR> <IDENTIFICADOR> Atribuicao()
+}
+
+void Loop():
+{}
+{
+	 Mdeclaracao() | <PEV>
+}	
+
+void Exp():
+{}
+{
+	<APAREN> Exp() <OP> Exp() <FPAREN> | Fator()
+}
+
+void Fator():
+{}
+{
+	<IDENTIFICADOR> ( <APAREN> ( ListaExp() )? <FPAREN> )? | <TOKEN_NUMLIT> | <TRUE> | <FALSE>
+}
+ 
+void ListaExp():
+{}
+{
+	Exp() ListaExp2()
+}
+
+void ListaExp2():
+{}
+{
+	(<VIR> Exp() ListaExp2())?
+}
+
+void SeqComandos ():
+{}
+{
+	(Comando())*
+}
+
+void Comando ():
+{}
+{
+		<IDENTIFICADOR> Atribuir() 
+		| <IF> <APAREN> Exp_logicas() <FPAREN><ACHAVE>SeqComandos()<FCHAVE> (<ELSE> <ACHAVE>SeqComandos()<FCHAVE>)? <PEV>
+		| <WHILE> <APAREN> Exp_logicas() <FPAREN><ACHAVE>SeqComandos()<FCHAVE> <PEV>
+		| <DO> <ACHAVE>SeqComandos()<FCHAVE> <WHILE> <APAREN> Exp_logicas() <FPAREN> <PEV>						
+		| <RETURN> Exp() <PEV>
+		| <PRINT> <APAREN> Exp() <FPAREN> <PEV>
+}                                                       
+
+void Exp_logicas():
+{}
+{
+	<APAREN> Exp_logicas() <OPL> Exp_logicas() <FPAREN> | Fator_logico()
+}
+
+void Fator_logico():
+{}
+{
+	<IDENTIFICADOR> | <TOKEN_NUMLIT> | <TRUE> | <FALSE>
+}
+
+void Func():
+{}
+{
+	<FUNCAO> Tipo() <IDENTIFICADOR> <APAREN> ( ListaArg() )? <FPAREN> <ACHAVE> VarDecl() SeqComandos() <FCHAVE>
+}
+
+void ListaArg():
+{}
+{
+	Tipo() <IDENTIFICADOR> ListaArg2()
+}
+
+void ListaArg2():
+{}
+{
+	(<VIR> Tipo() <IDENTIFICADOR> ListaArg2())?
+}
