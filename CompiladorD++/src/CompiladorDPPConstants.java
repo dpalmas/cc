@@ -156,5 +156,4 @@ public interface CompiladorDPPConstants
     "<ID_INVALIDO>",
     "<INVALIDO_LEXICO>",
   };
-
 }
